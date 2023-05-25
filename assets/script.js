@@ -17,21 +17,27 @@ var submitButton = document.getElementById("submit_button");
 
 
 
-//When Start Quiz button is clicked, the Start Screen becomes hidden, the first  question and answer choices appear 
+//When Start Quiz button is clicked, the startButton function is going to hide the Start Screen, start the timer and make it count down to zero and will display the questions from my linked questions.js file
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none";
     questionsDiv.style.display = "block";
 
-    //The timer starts counting down
+    //Starts timer by creating a variable, assigning it value of 60 and then using setInterval method to create a function that will be called every 1000 ms
     var timeRemaining = 60;
     setInterval(function() {
+    //Function decreases value of timeRemaining by 1 and then updates text of timer to display the new value
     timeRemaining--;
     timer.innerHTML = timeRemaining + " seconds remaining";
 
-    // If the timer reaches zero, display the End Screen
+    // If the timer reaches zero, End Screen will be displayed
     if (timeRemaining === 0) {
       endScreen.style.display = "block";
     }
   }, 1000);
-
+  //
+// Gets the question from the questions.js file
+var questions = [];
+var questionsData = fetch("./assets/questions.js").then(response => response.json());
+questionsData.then(data => {
+  questions = data.questions;
 });
