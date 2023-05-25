@@ -1,4 +1,4 @@
-var timer_sec = document.getElementById("timer");
+var timer = document.getElementById("timer");
 var time = document.getElementById("time");
 var start_screen = document.getElementById("start_screen");
 var start = document.getElementById("start");

@@ -11,32 +11,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
-    <!--Welcome text for the user-->
-    <h1>JavaScript Quiz</h1>
-</body>
-    <!--Display of timer on first page-->
-<div class="timer">Time: <span id="time">60</span></div>
 
-<div id="start_screen" class="start">
-  <h1>Let's take a JavaScript quiz!</h1>
-    <p>You have 60 seconds to complete the quiz.</p>
-    <p>You will lose 10 seconds for every incorrect answer, so be fast and don't be wrong!</p>
-  <button id="start">Start Quiz</button>
-</div>
-<div id="questions_div" class="hide">
-  <h2 id="title"></h2>
-  <div id="options" class="options"></div>
-</div>
-<div id="end_screen" class="hide">
-  <h2>The quiz is over, great job!</h2>
-  <p>Final Score: <span id="final_score"></span></p>
-  <p>Enter Name: <input type="text" id="initials" max="4" />
-    <button id="submit">Submit</button>
-  </p>
-</div>
- <!--Linked questions file and javascript file to html-->
-<script src="./assets/questions.js"></script>
-<script src="./assets/script.js"></script>
+<body>
+    <!--This is displayed on the Welcome screen-->
+    <h1>JavaScript Quiz</h1>
+
+    <!--Display of timer on Welcome screen-->
+    <div class="timer">Time: <span id="time">60</span></div>
+
+    <div id="start_screen" class="start">
+    <h1>Let's take a JavaScript quiz!</h1>
+        <p>You have 60 seconds to complete the quiz.</p>
+        <p>You will lose 10 seconds for every incorrect answer, so be fast and don't be wrong!</p>
+    <!--Start Quiz button-->  
+    <button id="start">Start Quiz</button>
+    </div>
+
+    <div id="questions_div" class="hide">
+    <h2 id="title"></h2>
+    <div id="options" class="options"></div>
+    </div>
+
+    <div id="end_screen" class="hide">
+    <h2>The quiz is over, great job!</h2>
+    <p>Final Score: <span id="final_score"></span></p>
+    <p>Enter Name: <input type="text" id="initials" max="4" />
+        <button id="submit">Submit</button>
+    </p>
+    </div>
+    
+    <!--Linked questions file and javascript file to html-->
+    <script src="./assets/questions.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
