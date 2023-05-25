@@ -1,1 +1,11 @@
-//My JavaScript will go here
+var timer_sec = document.getElementById("timer");
+var time = document.getElementById("time");
+var start_screen = document.getElementById("start_screen");
+var start = document.getElementById("start");
+var questionsDiv = document.getElementById("questions_div");
+var title = document.getElementById("title");
+var options= document.getElementById("options");
+var endScreen= document.getElementById("end_screen");
+var finalScore= document.getElementById("final_score");
+var initials = document.getElementById("initials");
+var submit = document.getElementById("submit");
