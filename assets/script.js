@@ -13,8 +13,25 @@ var finalScore= document.getElementById("final_score");
 var initials = document.getElementById("initials");
 var submitButton = document.getElementById("submit_button");
 
-//I created these additional variables as I wrote my javascript and needed them to run my code
+//Created these additional variables as I wrote my javascript and needed them to run my code
 
 
 
-//When Start Quiz button is clicked, the Start Screen becomes hidden, the timer starts counting down and the questions appear
+//When Start Quiz button is clicked, the Start Screen becomes hidden, the first  question and answer choices appear 
+startButton.addEventListener("click", function() {
+    startScreen.style.display = "none";
+    questionsDiv.style.display = "block";
+
+    //The timer starts counting down
+    var timeRemaining = 60;
+    setInterval(function() {
+    timeRemaining--;
+    timer.innerHTML = timeRemaining + " seconds remaining";
+
+    // If the timer reaches zero, display the End Screen
+    if (timeRemaining === 0) {
+      endScreen.style.display = "block";
+    }
+  }, 1000);
+
+});
