@@ -40,4 +40,5 @@ var questions = [];
 var questionsData = fetch("./assets/questions.js").then(response => response.json());
 questionsData.then(data => {
   questions = data.questions;
-});
+  
+})});
