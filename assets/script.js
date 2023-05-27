@@ -12,8 +12,9 @@ var endScreen= document.getElementById("end_screen");
 var finalScore= document.getElementById("final_score");
 var initials = document.getElementById("initials");
 var submitButton = document.getElementById("submit_button");
-var currentQuestionIndex = 0;
+
 //Created these additional variables as I wrote my javascript and needed them to run my code
+var currentQuestionIndex = 0;
 
 
 
@@ -28,6 +29,7 @@ startButton.addEventListener("click", function() {
     //Function decreases value of timeRemaining by 1 and then updates text of timer to display the new value
     timeRemaining--;
     time.innerHTML = timeRemaining + " seconds remaining";
+    //Add code here to stop timer from going negative
 
     // If the timer reaches zero, End Screen will be displayed
     if (timeRemaining === 0) { // or if the question length is met
