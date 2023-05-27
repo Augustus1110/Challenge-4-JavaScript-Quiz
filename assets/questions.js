@@ -3,12 +3,15 @@
 let questions = [
     { 
         Number: 1,
-        question: "Commonly used data types do NOT include _____ .", answer: "alerts", choices: [
+        question: "Commonly used data types do NOT include _____ .", 
+        answer: "alerts", 
+        choices: [
             "strings",
             "booleans",
             "alerts",
             "numbers"
         ]
+    
     },
     { Number: 2,
         question: "The condition in an if / else statement is enclosed within _____ .", answer: "parentheses", choices: [

@@ -1,6 +1,6 @@
 //Created variables matching the html code and assigned them the value of the element with their ID 
 
-var timer = document.getElementById("timer");
+// var timer = document.getElementById("timer");
 var time = document.getElementById("time");
 var startScreen = document.getElementById("start_screen");
 var start = document.getElementById("start");
@@ -12,7 +12,7 @@ var endScreen= document.getElementById("end_screen");
 var finalScore= document.getElementById("final_score");
 var initials = document.getElementById("initials");
 var submitButton = document.getElementById("submit_button");
-
+var currentQuestionIndex = 0;
 //Created these additional variables as I wrote my javascript and needed them to run my code
 
 
@@ -27,18 +27,39 @@ startButton.addEventListener("click", function() {
     setInterval(function() {
     //Function decreases value of timeRemaining by 1 and then updates text of timer to display the new value
     timeRemaining--;
-    timer.innerHTML = timeRemaining + " seconds remaining";
+    time.innerHTML = timeRemaining + " seconds remaining";
 
     // If the timer reaches zero, End Screen will be displayed
-    if (timeRemaining === 0) {
+    if (timeRemaining === 0) { // or if the question length is met
+      questionsDiv.style.display = "none";
       endScreen.style.display = "block";
     }
   }, 1000);
   //
 // Gets the question from the questions.js file
-var questions = [];
-var questionsData = fetch("./assets/questions.js").then(response => response.json());
-questionsData.then(data => {
-  questions = data.questions;
-  
-})});
+// var questions = [];
+// var questionsData = 
+// fetch("/assets/questions.js").then(response => {
+//   console.log("RES: ", response);
+//   return response.json()
+// })
+// // ;
+// // questionsData
+// .then(data => {
+//   console.log("DATA: ", data);
+//   questions = data.questions;
+
+// })
+//call your display questions right here
+title.innerHTML = questions[0].question;
+});
+
+
+
+//create display questions function here
+//create a for loop for your choices
+//create a function for your choices
+// click event for your choices buttons inside of your for loop with the current index variable ++
+
+
+// remember to set your innerHTML to an empty string as the value of your variables will change as the user clicks through the quiz
