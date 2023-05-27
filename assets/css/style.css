@@ -8,3 +8,7 @@
 #end_screen {
     display: none;
 }
+
+#high_scores {
+    display: none;
+}

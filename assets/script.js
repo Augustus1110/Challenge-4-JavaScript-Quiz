@@ -11,6 +11,10 @@ var endScreen= document.getElementById("end_screen");
 var finalScore= document.getElementById("final_score");
 var initials = document.getElementById("initials");
 var submitButton = document.getElementById("submit_button");
+var highScores = document.getElementById("high_scores");
+var highScoresList = document.getElementById("high_scores_list");
+var playAgain = document.getElementById("play_again");
+var clearHighScores = document.getElementById("clear_high_scores");
 
 //Created these additional variables as I wrote my javascript and needed them to run my code
 var currentQuestionIndex = 0;
@@ -30,8 +34,8 @@ startButton.addEventListener("click", function() {
     timeSec.innerHTML = Math.max(0, timeRemaining);
  
     // If the timer reaches zero, OR if all of the questions are answered, the following will happen: timer ends, questions become hidden and end screen will display
-    
-    //checks if timeRemaining is equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
+
+    //Checks if timeRemaining is equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
     if (timeRemaining === 0 || currentQuestionIndex === questions.length) {
       
       //clears interval previously set with setInterval. clearInterval function stops the execution of the interval by passing the intervalId as an argument. Interval will no longer run and update timer
