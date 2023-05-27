@@ -38,7 +38,7 @@ startButton.addEventListener("click", function() {
     //Checks if timeRemaining is equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
     if (timeRemaining === 0 || currentQuestionIndex === questions.length) {
       
-      //clears interval previously set with setInterval. clearInterval function stops the execution of the interval by passing the intervalId as an argument. Interval will no longer run and update timer
+      //Clears interval previously set with setInterval. clearInterval function stops the execution of the interval from running and updating the timer by passing intervalId in as an argument
       clearInterval(intervalId);
       quizQuestions.style.display = "none";
       endScreen.style.display = "block";
