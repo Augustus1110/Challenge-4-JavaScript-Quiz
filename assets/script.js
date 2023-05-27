@@ -1,6 +1,6 @@
 //Created variables matching the html code and assigned them the value of the element with their ID 
 
-var time = document.getElementById("time");
+var timeSec = document.getElementById("time_sec");
 var startScreen = document.getElementById("start_screen");
 var start = document.getElementById("start");
 var startButton = document.getElementById("start_button");
@@ -15,23 +15,27 @@ var submitButton = document.getElementById("submit_button");
 //Created these additional variables as I wrote my javascript and needed them to run my code
 var currentQuestionIndex = 0;
 
-
-
-//When Start Quiz button is clicked, the startButton function is going to hide the Start Screen, start the timer and make it count down to zero and will display the questions from my linked questions.js file
+//When Start Quiz button is clicked, startButton function is going to hide the Start Screen, start the timer count down and will display the quiz questions
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none";
     quizQuestions.style.display = "block";
 
-    //Starts timer by creating a variable, assigning it value of 60 and then using setInterval method to create a function that will be called every 1000 ms
+    //Starts timer by creating a variable with value of 60 and then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
     var timeRemaining = 7;
-    setInterval(function() {
-    //Function decreases value of timeRemaining by 1 and then updates text of timer to display the new value
+    var intervalId = setInterval(function() {
+    //Decreases value of timeRemaining by 1 
     timeRemaining--;
-    time.innerHTML = timeRemaining;
-    //Add code here to stop timer from going negative
-
-    // If the timer reaches zero, End Screen will be displayed
-    if (timeRemaining === 0) { // or if the question length is met
+    //Updates text of timer to display the new value of timeRemaining
+    //If timeRemaining is negative, will display 0 instead of negative number
+    timeSec.innerHTML = Math.max(0, timeRemaining);
+ 
+    // If the timer reaches zero, OR if all of the questions are answered, the following will happen: timer ends, questions become hidden and end screen will display
+    
+    //checks if timeRemaining is equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
+    if (timeRemaining === 0 || currentQuestionIndex === questions.length) {
+      
+      //clears interval previously set with setInterval. clearInterval function stops the execution of the interval by passing the intervalId as an argument. Interval will no longer run and update timer
+      clearInterval(intervalId);
       quizQuestions.style.display = "none";
       endScreen.style.display = "block";
     }
