@@ -14,7 +14,7 @@
 
 <body>
     <!--Display of timer and instructions for user on Start Screen. Timer will start at 60 sec-->
-    <div class="timer">Time: <span id="time">60</span></div>
+    <div class="timer">Time left: <span id="time">60</span></div>
     <div id="start_screen" class="start">
     <h1>Let's take a JavaScript quiz!</h1>
         <p>Answer all of the questions in the alloted time. You will lose 10 seconds for every incorrect answer, so be fast and don't be wrong!</p>
@@ -22,15 +22,15 @@
     <button id="start_button">Start Quiz</button>
     </div>
     
-    <!--I'm not sure how this code is relating to my linked questions-->
-    <div id="questions_div" class="hide">
+    <!--This code is relating to my linked questions-->
+    <div id="quiz_questions" class="hide">
     <h2 id="title"></h2>
     <div id="options" class="options"></div>
     </div>
 
     <!--Text and user input field that displays on End Screen-->
     <div id="end_screen" class="hide">
-    <h1>The quiz is over!</h1> 
+    <h1>QUIZ OVER!!</h1> 
     <h2>Great job. Let's see how you did.</h2>
     <p>Final Score: <span id="final_score"></span></p>
     <p>Enter your initials: <input type="text" id="initials" max="3" />

@@ -4,7 +4,7 @@ var time = document.getElementById("time");
 var startScreen = document.getElementById("start_screen");
 var start = document.getElementById("start");
 var startButton = document.getElementById("start_button");
-var questionsDiv = document.getElementById("questions_div");
+var quizQuestions = document.getElementById("quiz_questions");
 var title = document.getElementById("title");
 var options= document.getElementById("options");
 var endScreen= document.getElementById("end_screen");
@@ -20,25 +20,25 @@ var currentQuestionIndex = 0;
 //When Start Quiz button is clicked, the startButton function is going to hide the Start Screen, start the timer and make it count down to zero and will display the questions from my linked questions.js file
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none";
-    questionsDiv.style.display = "block";
+    quizQuestions.style.display = "block";
 
     //Starts timer by creating a variable, assigning it value of 60 and then using setInterval method to create a function that will be called every 1000 ms
     var timeRemaining = 7;
     setInterval(function() {
     //Function decreases value of timeRemaining by 1 and then updates text of timer to display the new value
     timeRemaining--;
-    time.innerHTML = timeRemaining + " seconds";
+    time.innerHTML = timeRemaining;
     //Add code here to stop timer from going negative
 
     // If the timer reaches zero, End Screen will be displayed
     if (timeRemaining === 0) { // or if the question length is met
-      questionsDiv.style.display = "none";
+      quizQuestions.style.display = "none";
       endScreen.style.display = "block";
     }
   }, 1000);
   
 
-//title.innerHTML = questions[0].question;
+title.innerHTML = questions[0].question;
 });
 
 
