@@ -1,6 +1,5 @@
 //Created variables matching the html code and assigned them the value of the element with their ID 
 
-// var timer = document.getElementById("timer");
 var time = document.getElementById("time");
 var startScreen = document.getElementById("start_screen");
 var start = document.getElementById("start");
@@ -24,11 +23,11 @@ startButton.addEventListener("click", function() {
     questionsDiv.style.display = "block";
 
     //Starts timer by creating a variable, assigning it value of 60 and then using setInterval method to create a function that will be called every 1000 ms
-    var timeRemaining = 60;
+    var timeRemaining = 7;
     setInterval(function() {
     //Function decreases value of timeRemaining by 1 and then updates text of timer to display the new value
     timeRemaining--;
-    time.innerHTML = timeRemaining + " seconds remaining";
+    time.innerHTML = timeRemaining + " seconds";
     //Add code here to stop timer from going negative
 
     // If the timer reaches zero, End Screen will be displayed
@@ -37,25 +36,10 @@ startButton.addEventListener("click", function() {
       endScreen.style.display = "block";
     }
   }, 1000);
-  //
-// Gets the question from the questions.js file
-// var questions = [];
-// var questionsData = 
-// fetch("/assets/questions.js").then(response => {
-//   console.log("RES: ", response);
-//   return response.json()
-// })
-// // ;
-// // questionsData
-// .then(data => {
-//   console.log("DATA: ", data);
-//   questions = data.questions;
+  
 
-// })
-//call your display questions right here
-title.innerHTML = questions[0].question;
+//title.innerHTML = questions[0].question;
 });
-
 
 
 //create display questions function here
