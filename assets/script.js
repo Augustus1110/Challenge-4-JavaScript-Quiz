@@ -1,4 +1,4 @@
-//Created variables matching the html code and assigned them the value of the element with their ID 
+//I created variables matching the html code and assigned them the value of the element with their ID 
 
 var timeSec = document.getElementById("time_sec");
 var startScreen = document.getElementById("start_screen");
@@ -17,22 +17,25 @@ var clearHighScores = document.getElementById("clear_high_scores");
 
 //These additional variables were created as I wrote the javascript, because they are needed to run the code
 
-//Creates a variable that stores the current question index. Value is set to 0 because the first question in the array is at index 0
+//Creates variable that stores the current question index. Value is set to 0 because first question in the array is at index 0
 var currentQuestionIndex = 0;
 //Creates a variable that stores the questions array from questions.js
 var choices = questions[currentQuestionIndex].choices;
 
-//When Start Quiz button is clicked, startButton function is going to hide the Start Screen, display the quiz questions and start the timer
+//Add a click event listener to Start Quiz button. When clicked, startButton function is going to hide the Start Screen, display the quiz questions and start the timer
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none";
     quizQuestions.style.display = "block";
+
+    //This part of the code handles displaying the questions and choices
+
     //Displays the first question in the array, indexed at 0
     title.innerHTML = questions[0].question;
     //Creates a for loop that will loop through the choices array
     for (var i = 0; i < choices.length; i++) {
         //Creates button element for each choice in array
         var choiceButton = document.createElement("button");
-        //Sets the class of each button to "choice"
+        //.setAttribute is a method used to modify/add attributes to an HTML element. Here, it sets the class of each button to "choice"
         choiceButton.setAttribute("class", "choice");
         //Sets value of each button to value of each choice in array
         choiceButton.setAttribute("value", choices[i]);
@@ -41,8 +44,55 @@ startButton.addEventListener("click", function() {
         //Appends each button to the options div
         options.appendChild(choiceButton);
     }
+    
+    //This part of the code handles the user's answer to the questions
+
+    //Adds a click event listener to the options div.
+    options.addEventListener("click", function(event) {
+      //When choice button clicked, this checks if clicked element matches the class "choice"
+      if (event.target.matches(".choice")) {
+          //If true, clicked button's value is stored in userAnswer variable
+          var userAnswer = event.target.value;
+          var correctAnswer = questions[currentQuestionIndex].answer;
+          var result = document.createElement("p");
+
+          if (userAnswer === correctAnswer) {
+              result.textContent = "Correct!";
+          } else {
+              result.textContent = "Incorrect!";
+          }
+
+          quizQuestions.appendChild(result);
+
+          setTimeout(function() {
+              result.remove();
+          }, 800);
+
+          currentQuestionIndex++;
+
+          if (currentQuestionIndex < questions.length) {
+              title.innerHTML = questions[currentQuestionIndex].question;
+              choices = questions[currentQuestionIndex].choices;
+              options.innerHTML = "";
+
+              for (var i = 0; i < choices.length; i++) {
+                  var choiceButton = document.createElement("button");
+                  choiceButton.setAttribute("class", "choice");
+                  choiceButton.setAttribute("value", choices[i]);
+                  choiceButton.textContent = choices[i];
+                  options.appendChild(choiceButton);
+              }
+          } else {
+              clearInterval(intervalId);
+              quizQuestions.style.display = "none";
+              endScreen.style.display = "block";
+          }
+      }
+  });
+
+
     //Starts timer by creating a variable with value of 60 and then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
-    var timeRemaining = 8;
+    var timeRemaining = 20;
     var intervalId = setInterval(function() {
     //Decreases value of timeRemaining by 1 
     timeRemaining--;
