@@ -30,13 +30,13 @@ startButton.addEventListener("click", function() {
     title.innerHTML = questions[0].question;
     //Creates a for loop that will loop through the choices array
     for (var i = 0; i < choices.length; i++) {
-        //Creates a button element for each choice in array
+        //Creates button element for each choice in array
         var choiceButton = document.createElement("button");
         //Sets the class of each button to "choice"
         choiceButton.setAttribute("class", "choice");
-        //Sets the value of each button to the value of each choice array
+        //Sets value of each button to value of each choice in array
         choiceButton.setAttribute("value", choices[i]);
-        //Sets the text of each button to the value of each choice in array
+        //Sets text of each button to value of each choice in array
         choiceButton.textContent = choices[i];
         //Appends each button to the options div
         options.appendChild(choiceButton);
