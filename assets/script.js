@@ -2,7 +2,6 @@
 
 var timeSec = document.getElementById("time_sec");
 var startScreen = document.getElementById("start_screen");
-var start = document.getElementById("start");
 var startButton = document.getElementById("start_button");
 var quizQuestions = document.getElementById("quiz_questions");
 var title = document.getElementById("title");
@@ -16,16 +15,30 @@ var highScoresList = document.getElementById("high_scores_list");
 var playAgain = document.getElementById("play_again");
 var clearHighScores = document.getElementById("clear_high_scores");
 
-//Created these additional variables as I wrote my javascript and needed them to run my code
-var currentQuestionIndex = 0;
+//These additional variables were created as I wrote the javascript, because they are needed them to run the code
 
-//When Start Quiz button is clicked, startButton function is going to hide the Start Screen, start the timer count down and will display the quiz questions
+//Creates a variable that stores the current question index. Value is set to 0 because the first question in the array is at index 0
+var currentQuestionIndex = 0;
+//Creates a variable that stores the questions array from questions.js
+var choices = questions[currentQuestionIndex].choices;
+
+//When Start Quiz button is clicked, startButton function is going to hide the Start Screen, display the quiz questions and start the timer
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none";
     quizQuestions.style.display = "block";
-
+    //Displays the first question in the array, indexed at 0
+    title.innerHTML = questions[0].question;
+    //Creates a for loop that will loop through the choices array and create a button for each choice
+    for (var i = 0; i < choices.length; i++) {
+        //For each choice, the button's class, value and text content will be set then appended to the options div
+        var choiceButton = document.createElement("button");
+        choiceButton.setAttribute("class", "choice");
+        choiceButton.setAttribute("value", choices[i]);
+        choiceButton.textContent = choices[i];
+        options.appendChild(choiceButton);
+    }
     //Starts timer by creating a variable with value of 60 and then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
-    var timeRemaining = 7;
+    var timeRemaining = 8;
     var intervalId = setInterval(function() {
     //Decreases value of timeRemaining by 1 
     timeRemaining--;
@@ -45,8 +58,6 @@ startButton.addEventListener("click", function() {
     }
   }, 1000);
   
-
-title.innerHTML = questions[0].question;
 });
 
 
