@@ -67,13 +67,6 @@ startButton.addEventListener("click", function() {
               result.remove();
           }, 800);
 
-          //This function stops timer by clearing the interval, using clearInterval(intervalId), hides quizQuestions and displays endScreen. It was created so I don't repeat the code for performing those actions
-          function showEndScreen(){
-            clearInterval(intervalId);
-            quizQuestions.style.display = "none";
-            endScreen.style.display = "block";
-          }
-          
           //THIS PART OF THE CODE HANDLES MOVING ON TO THE NEXT QUESTION
 
           //After user answers question, this increases currentQuestionIndex by 1 which moves the index to the next question in the array
@@ -90,8 +83,9 @@ startButton.addEventListener("click", function() {
               //Calls makeAnswerButtons function to display answer buttons for the next question
               makeAnswerButtons(choices);
           } else {
-              //showEndScreen function is called to display endScreen
-              showEndScreen();
+            clearInterval(intervalId);
+            quizQuestions.style.display = "none";
+            endScreen.style.display = "block";
           }
       }
   });
@@ -99,7 +93,7 @@ startButton.addEventListener("click", function() {
     //THIS PART OF THE CODE HANDLES THE TIMER - BUT NOTE THAT IT IS STILL CONTAINED WITHIN THE START BUTTON EVENT LISTENER, SO THE TIMER FUNCTIONALITY STARTS WHEN THE START BUTTON IS CLICKED
 
     //Starts timer by creating a variable with value of 60 and then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
-    var timeRemaining = 60;
+    var timeRemaining = 30;
     var intervalId = setInterval(function() {
     //Decreases value of timeRemaining by 1 
     timeRemaining--;
@@ -111,12 +105,12 @@ startButton.addEventListener("click", function() {
 
     //Checks if timeRemaining is equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
     if (timeRemaining === 0 || currentQuestionIndex === questions.length) {
-       //If either of the above is true, showEndScreen function is called to display endScreen
-      showEndScreen();
-     
+       //If either of the above is true, this stops timer, hides quiz questions and displays endScreen
+       clearInterval(intervalId);
+       quizQuestions.style.display = "none";
+       endScreen.style.display = "block";
     }
   }, 1000);
-  
 });
 
 //The makeAnswerButtons function was created because the functionalities are repeated in my code above
@@ -137,9 +131,6 @@ function makeAnswerButtons(choices){
     options.appendChild(choiceButton);
   }
 }    
-
-
-
 
 
 //THIS PART OF THE CODE HANDLES THE END SCREEN AND SAVING THE USER'S SCORE
