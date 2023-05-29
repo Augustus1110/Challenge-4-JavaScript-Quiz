@@ -56,6 +56,8 @@ startButton.addEventListener("click", function() {
               result.textContent = "Correct!";
           } else {
               result.textContent = "Incorrect!";
+              //Subtracts 10 seconds from timeRemaining if user's answer is incorrect
+              timeRemaining -= 10;
           }
           //Appends result to quizQuestions div
           quizQuestions.appendChild(result);
@@ -91,7 +93,7 @@ startButton.addEventListener("click", function() {
     //THIS PART OF THE CODE HANDLES THE TIMER - BUT NOTE THAT IT IS STILL CONTAINED WITHIN THE START BUTTON EVENT LISTENER, SO THE TIMER FUNCTIONALITY STARTS WHEN THE START BUTTON IS CLICKED
 
     //Starts timer by creating a variable with value of 60 and then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
-    var timeRemaining = 20;
+    var timeRemaining = 60;
     var intervalId = setInterval(function() {
     //Decreases value of timeRemaining by 1 
     timeRemaining--;
