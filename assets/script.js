@@ -80,6 +80,7 @@ startButton.addEventListener("click", function() {
               //Calls makeAnswerButtons function to display answer buttons for the next question
               makeAnswerButtons(choices);
           } else {
+              //If no more questions left, this stops timer by clearing the interval using clearInterval(intervalId), hides quizQuestions and displays endScreen
               clearInterval(intervalId);
               quizQuestions.style.display = "none";
               endScreen.style.display = "block";
@@ -88,7 +89,7 @@ startButton.addEventListener("click", function() {
   });
 
     //THIS PART OF THE CODE HANDLES THE TIMER - BUT NOTE THAT IT IS STILL CONTAINED WITHIN THE START BUTTON EVENT LISTENER, SO THE TIMER FUNCTIONALITY STARTS WHEN THE START BUTTON IS CLICKED
-    
+
     //Starts timer by creating a variable with value of 60 and then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
     var timeRemaining = 20;
     var intervalId = setInterval(function() {
@@ -103,7 +104,7 @@ startButton.addEventListener("click", function() {
     //Checks if timeRemaining is equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
     if (timeRemaining === 0 || currentQuestionIndex === questions.length) {
       
-      //Clears interval previously set with setInterval. clearInterval function stops the execution of the interval from running and updating the timer by passing intervalId in as an argument
+       //If no more questions left, this stops timer by clearing the interval using clearInterval(intervalId), hides quizQuestions and displays endScreen
       clearInterval(intervalId);
       quizQuestions.style.display = "none";
       endScreen.style.display = "block";
