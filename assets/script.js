@@ -22,12 +22,12 @@ var currentQuestionIndex = 0;
 //Creates a variable that stores the questions array from questions.js
 var choices = questions[currentQuestionIndex].choices;
 
-//Add a click event listener to Start Quiz button. When clicked, startButton function is going to hide the Start Screen, display the quiz questions and start the timer
+//Adds a click event listener to Start Quiz button. When clicked, startButton function is going to hide the Start Screen, display the quiz questions and start the timer
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none";
     quizQuestions.style.display = "block";
 
-    //This part of the code handles displaying the questions and choices
+    //**This part of the code handles displaying the questions and choices**
 
     //Displays the first question in the array, indexed at 0
     title.innerHTML = questions[0].question;
@@ -45,7 +45,7 @@ startButton.addEventListener("click", function() {
         options.appendChild(choiceButton);
     }
     
-    //This part of the code handles the user's answer to the questions
+    //**This part of the code handles the user's answer to the questions**
 
     //Adds a click event listener to the options div.
     options.addEventListener("click", function(event) {
@@ -53,23 +53,29 @@ startButton.addEventListener("click", function() {
       if (event.target.matches(".choice")) {
           //If true, clicked button's value is stored in userAnswer variable
           var userAnswer = event.target.value;
+          //Retrieves correct answer for current question from questions array
           var correctAnswer = questions[currentQuestionIndex].answer;
+          //Creates new paragraph element called result, to display correctness of user's answer
           var result = document.createElement("p");
-
+          //Checks if user's answer matches correct answer, displays "Correct!" or "Incorrect!", accordingly
           if (userAnswer === correctAnswer) {
               result.textContent = "Correct!";
           } else {
               result.textContent = "Incorrect!";
           }
-
+          //Appends result to quizQuestions div
           quizQuestions.appendChild(result);
-
+          //Displays result for 0.8 seconds, then uses setTimeout method to hide result on page by removing result from quizQuestions
           setTimeout(function() {
               result.remove();
           }, 800);
 
+          //This part of the code handles moving to the next question
+
+          //After user answers question, this increases currentQuestionIndex by 1 and checks if there are more questions in the array
           currentQuestionIndex++;
 
+          //If more questions remain, this displays the next question and choices
           if (currentQuestionIndex < questions.length) {
               title.innerHTML = questions[currentQuestionIndex].question;
               choices = questions[currentQuestionIndex].choices;
