@@ -22,14 +22,19 @@ var currentQuestionIndex = 0;
 //Creates a variable that stores the questions array from questions.js
 var choices = questions[currentQuestionIndex].choices;
 
+//THIS PART OF THE CODE HANDLES THE START SCREEN AND START BUTTON
+
 //Adds a click event listener to Start Quiz button. When clicked, startButton function is going to hide the Start Screen, display the quiz questions and start the timer
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none";
     quizQuestions.style.display = "block";
 
-    //**This part of the code handles displaying the questions and choices**
+    //THIS PART OF THE CODE HANDLES DISPLAYING THE QUESTIONS AND CHOICES
 
-    //Displays the first question in the array, indexed at 0
+    //innerHTML is a property that sets or returns the HTML content of an element, here is sets the content of title to the value of questions[0].question 
+    //question[0].question retrieves the question text from the "questions" array at index 0 and accesses the "question" property of the object at index 0
+    
+    //Together these work to display the first question in the array, indexed at 0
     title.innerHTML = questions[0].question;
     //Creates a for loop that will loop through the choices array
     for (var i = 0; i < choices.length; i++) {
@@ -45,7 +50,7 @@ startButton.addEventListener("click", function() {
         options.appendChild(choiceButton);
     }
     
-    //**This part of the code handles the user's answer to the questions**
+    //THIS PART OF THE CODE HANDLES THE USER'S ANSWER TO THE QUESTIONS
 
     //Adds a click event listener to the options div.
     options.addEventListener("click", function(event) {
@@ -70,13 +75,14 @@ startButton.addEventListener("click", function() {
               result.remove();
           }, 800);
 
-          //This part of the code handles moving to the next question
+          //THIS PART OF THE CODE HANDLES MOVING ON TO THE NEXT QUESTION
 
-          //After user answers question, this increases currentQuestionIndex by 1 and checks if there are more questions in the array
+          //After user answers question, this increases currentQuestionIndex by 1 which move the index to the next question in the array
           currentQuestionIndex++;
 
           //If more questions remain, this displays the next question and choices
           if (currentQuestionIndex < questions.length) {
+
               title.innerHTML = questions[currentQuestionIndex].question;
               choices = questions[currentQuestionIndex].choices;
               options.innerHTML = "";
