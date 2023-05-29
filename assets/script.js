@@ -22,6 +22,7 @@ var currentQuestionIndex = 0;
 //Creates a variable that stores the questions array from questions.js
 var choices = questions[currentQuestionIndex].choices;
 
+
 //THIS PART OF THE CODE HANDLES THE START SCREEN AND START BUTTON
 
 //Adds a click event listener to Start Quiz button. When clicked, startButton function is going to hide the Start Screen, display the quiz questions and start the timer
@@ -66,6 +67,13 @@ startButton.addEventListener("click", function() {
               result.remove();
           }, 800);
 
+          //This function stops timer by clearing the interval, using clearInterval(intervalId), hides quizQuestions and displays endScreen. It was created so I don't repeat the code for performing those actions
+          function showEndScreen(){
+            clearInterval(intervalId);
+            quizQuestions.style.display = "none";
+            endScreen.style.display = "block";
+          }
+          
           //THIS PART OF THE CODE HANDLES MOVING ON TO THE NEXT QUESTION
 
           //After user answers question, this increases currentQuestionIndex by 1 which moves the index to the next question in the array
@@ -82,10 +90,8 @@ startButton.addEventListener("click", function() {
               //Calls makeAnswerButtons function to display answer buttons for the next question
               makeAnswerButtons(choices);
           } else {
-              //If no more questions left, this stops timer by clearing the interval using clearInterval(intervalId), hides quizQuestions and displays endScreen
-              clearInterval(intervalId);
-              quizQuestions.style.display = "none";
-              endScreen.style.display = "block";
+              //showEndScreen function is called to display endScreen
+              showEndScreen();
           }
       }
   });
@@ -105,17 +111,15 @@ startButton.addEventListener("click", function() {
 
     //Checks if timeRemaining is equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
     if (timeRemaining === 0 || currentQuestionIndex === questions.length) {
-      
-       //If no more questions left, this stops timer by clearing the interval using clearInterval(intervalId), hides quizQuestions and displays endScreen
-      clearInterval(intervalId);
-      quizQuestions.style.display = "none";
-      endScreen.style.display = "block";
+       //If either of the above is true, showEndScreen function is called to display endScreen
+      showEndScreen();
+     
     }
   }, 1000);
   
 });
 
-//The makeAnswerButtons function was created because the functionality is repeated in my the code. Above, I call this function instead of retyping the same code
+//The makeAnswerButtons function was created because the functionalities are repeated in my code above
 
 //This function takes in the array of "choices" from questions.js as an argument and creates a button for each choice in that array
 function makeAnswerButtons(choices){
@@ -136,10 +140,16 @@ function makeAnswerButtons(choices){
 
 
 
-//create display questions function here
-//create a for loop for your choices
-//create a function for your choices
-// click event for your choices buttons inside of your for loop with the current index variable ++
 
 
-// remember to set your innerHTML to an empty string as the value of your variables will change as the user clicks through the quiz
+//THIS PART OF THE CODE HANDLES THE END SCREEN AND SAVING THE USER'S SCORE
+
+//create a function that will display the user's score on the end screen
+//create a function that will save the user's initials and score to local storage
+
+//THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
+
+//create a function that will display the 5 previous high scores and initials on the high scores page
+//create a function that will display the user's initials and score on the high scores page if they have one of the top 5 scores
+//create a function that will clear the high scores
+//create a function that will go back to the start screen
