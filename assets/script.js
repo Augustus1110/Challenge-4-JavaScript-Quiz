@@ -130,6 +130,31 @@ startButton.addEventListener("click", function() {
   
 });
 
+//The makeAnswerButtons function was created because the functionality is repeated in my the code. Above, I call this function instead of retyping the same code
+
+//This function takes in the array of "choices" from questions.js as an argument and creates a button for each choice in that array
+function makeAnswerButtons(choices){
+  //Creates a loop that will loop through the choices array
+  for (var i = 0; i < choices.length; i++) {
+    //Creates button element for each choice in array
+    var choiceButton = document.createElement("button");
+    //.setAttribute is a method used to modify/add attributes to an HTML element. Here, it sets the class of each button to "choice" so that it can be targeted later. I will target it to add CSS styling
+    choiceButton.setAttribute("class", "choice");
+    //Sets value of each button to value of each choice in array
+    choiceButton.setAttribute("value", choices[i]);
+    //Sets text of each button to value of each choice in array
+    choiceButton.textContent = choices[i];
+    //Appends the choiceButton element as a child of the options div. This adds the button to the HTML page so that the user can see it
+    options.appendChild(choiceButton);
+  }
+}    
+
+
+
+
+
+
+
 
 //create display questions function here
 //create a for loop for your choices
