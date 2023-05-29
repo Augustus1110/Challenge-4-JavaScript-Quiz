@@ -31,24 +31,13 @@ startButton.addEventListener("click", function() {
 
     //THIS PART OF THE CODE HANDLES DISPLAYING THE QUESTIONS AND CHOICES
 
-    //innerHTML is a property that sets or returns the HTML content of an element, here is sets the content of title to the value of questions[0].question 
-    //question[0].question retrieves the question text from the "questions" array at index 0 and accesses the "question" property of the object at index 0
+    //innerHTML is a property that sets or returns the HTML content of an element. Here, is sets the content of title to the value of questions[0].question 
+    //questions[0].question retrieves the question text from questions.js and looks to the "questions" array at index 0 and accesses the "question" property of first question object in the array
     
     //Together these work to display the first question in the array, indexed at 0
     title.innerHTML = questions[0].question;
-    //Creates a for loop that will loop through the choices array
-    for (var i = 0; i < choices.length; i++) {
-        //Creates button element for each choice in array
-        var choiceButton = document.createElement("button");
-        //.setAttribute is a method used to modify/add attributes to an HTML element. Here, it sets the class of each button to "choice"
-        choiceButton.setAttribute("class", "choice");
-        //Sets value of each button to value of each choice in array
-        choiceButton.setAttribute("value", choices[i]);
-        //Sets text of each button to value of each choice in array
-        choiceButton.textContent = choices[i];
-        //Appends each button to the options div
-        options.appendChild(choiceButton);
-    }
+    //In order to display the answer choices as buttons, I created the makeAnswerButtons function and amd calling it here, passing in the choices array as an argument. The text of the function is found at the bottom of this file
+    makeAnswerButtons(choices);
     
     //THIS PART OF THE CODE HANDLES THE USER'S ANSWERS TO THE QUESTIONS
 
@@ -88,16 +77,8 @@ startButton.addEventListener("click", function() {
               choices = questions[currentQuestionIndex].choices;
               //sets options' innerHTML to an empty string to remove any previously displayed answer buttons
               options.innerHTML = "";
-             
-              //For loop that loops through choices array and creates a button for each choice
-              //
-              for (var i = 0; i < choices.length; i++) {
-                  var choiceButton = document.createElement("button");
-                  choiceButton.setAttribute("class", "choice");
-                  choiceButton.setAttribute("value", choices[i]);
-                  choiceButton.textContent = choices[i];
-                  options.appendChild(choiceButton);
-              }
+              //Calls makeAnswerButtons function to display answer buttons for the next question
+              makeAnswerButtons(choices);
           } else {
               clearInterval(intervalId);
               quizQuestions.style.display = "none";
@@ -106,7 +87,8 @@ startButton.addEventListener("click", function() {
       }
   });
 
-
+    //THIS PART OF THE CODE HANDLES THE TIMER - BUT NOTE THAT IT IS STILL CONTAINED WITHIN THE START BUTTON EVENT LISTENER, SO THE TIMER FUNCTIONALITY STARTS WHEN THE START BUTTON IS CLICKED
+    
     //Starts timer by creating a variable with value of 60 and then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
     var timeRemaining = 20;
     var intervalId = setInterval(function() {
@@ -148,11 +130,6 @@ function makeAnswerButtons(choices){
     options.appendChild(choiceButton);
   }
 }    
-
-
-
-
-
 
 
 
