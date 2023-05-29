@@ -50,7 +50,7 @@ startButton.addEventListener("click", function() {
         options.appendChild(choiceButton);
     }
     
-    //THIS PART OF THE CODE HANDLES THE USER'S ANSWER TO THE QUESTIONS
+    //THIS PART OF THE CODE HANDLES THE USER'S ANSWERS TO THE QUESTIONS
 
     //Adds a click event listener to the options div.
     options.addEventListener("click", function(event) {
@@ -77,16 +77,20 @@ startButton.addEventListener("click", function() {
 
           //THIS PART OF THE CODE HANDLES MOVING ON TO THE NEXT QUESTION
 
-          //After user answers question, this increases currentQuestionIndex by 1 which move the index to the next question in the array
+          //After user answers question, this increases currentQuestionIndex by 1 which moves the index to the next question in the array
           currentQuestionIndex++;
 
-          //If more questions remain, this displays the next question and choices
+          //Checks if currentQuestionIndex is less than the length of the questions array, if true, displays next question
           if (currentQuestionIndex < questions.length) {
-
+              //If there are more questions, updates title element's innerHTML to the question of the next index in the questions array  
               title.innerHTML = questions[currentQuestionIndex].question;
+              //Updates choices variable to the choices of the next index in the questions array
               choices = questions[currentQuestionIndex].choices;
+              //sets options' innerHTML to an empty string to remove any previously displayed answer buttons
               options.innerHTML = "";
-
+             
+              //For loop that loops through choices array and creates a button for each choice
+              //
               for (var i = 0; i < choices.length; i++) {
                   var choiceButton = document.createElement("button");
                   choiceButton.setAttribute("class", "choice");
