@@ -26,7 +26,6 @@ var choices = questions[currentQuestionIndex].choices;
 
 //I created all of these functions so I don't have to repeat code. I can just call these functions when I need them. I created them at the top of the file so they are accessible to all of the code below
 
-
 //showEndScreen function clears the interval, hides seconds, hides questions, and displays end screen with final score
 function showEndScreen() {
   clearInterval(intervalId);
@@ -178,10 +177,19 @@ function limitCharacters(){
 //Event listener that calls the limitCharacters function when the user types in the initials field
 initials.addEventListener("input", limitCharacters);
 
-
 //THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
 
-//create a function that will display the 5 previous high scores and initials on the high scores page
+//write a function that will display the high scores page when the user clicks the submit button on the end screen
+
+//This function will display the high scores screen and hide the end screen when the user clicks the submit button on the end screen
+submitButton.addEventListener("click", function() {
+  highScores.style.display = "block";
+  endScreen.style.display = "none";
+});
+
+
+
+//create a function that will display the 5-10 previous high scores and initials on the high scores page
 //create a function that will display the user's initials and score on the high scores page if they have one of the top 5 scores
 //create a function that will clear the high scores
 //create a function that will go back to the start screen
