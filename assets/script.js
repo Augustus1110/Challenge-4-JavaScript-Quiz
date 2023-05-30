@@ -13,7 +13,7 @@ var submitButton = document.getElementById("submit_button");
 var highScores = document.getElementById("high_scores");
 var highScoresList = document.getElementById("high_scores_list");
 var playAgain = document.getElementById("play_again");
-var clearHighScores = document.getElementById("clear_high_scores");
+var clearScores = document.getElementById("clear_scores");
 
 //These additional variables were created as I wrote the javascript, because they are needed to run the code. They are global variables so that they can be accessed in multiple functions
 
@@ -143,7 +143,27 @@ startButton.addEventListener("click", function() {
     )
   });
 
-//THIS PART OF THE CODE HANDLES THE END SCREEN WHERE THE USER CAN SUBMIT THEIR INITIALS, VIEW THEIR FINAL SCORE AND TRANSITION TO THE HIGH SCORES SCREEN 
+
+//THIS PART OF THE CODE HANDLES THE FUNCTIONALITIES OF BOTH THE END SCREEN AND THE HIGH SCORE SCREENS
+
+//Creates a function that will display the 10 previous high scores and initials on the high scores page
+
+function showHighScores(){
+  //Same as above, first retrieve the scores from the local storage and parse the JSON string to an object. If no scores have been saved, returns an empty array
+  var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
+  //Sorts the savedScores array in descending order by score
+  savedScores.sort(function(a, b) {
+    return b. score - a. score;
+});
+  //Clears the highScoresList element's innerHTML
+  highScoresList.innerHTML = "";
+  //for loop that loops through the savedScores array and creates a new li element for each score and initials
+  for (var i = 0; i < savedScores.length && i < 10.; i++) {
+    var scoreItem = document.createElement("li");
+    scoreItem.textContent = savedScores[i].initials + ": " + savedScores[i].score;
+    highScoresList.appendChild(scoreItem);
+  }
+};
 
 //This function creates the user's score and displays it on the end screen
 function saveScore(){
@@ -154,16 +174,22 @@ function saveScore(){
   //Creates a variable that is a new object that store the user's score and initials
   var newScore = {
     score: score,
-    initials: initials.value
-  } //Pushes the newScore object to the savedScores array
+    initials: initials.value,
+  }; 
+  //Pushes the newScore object to the savedScores array
   savedScores.push(newScore);
   //Sorts the savedScores array in descending order by score
+  savedScores.sort(function(a, b) {
+    return b. score - a. score;
+});
+  //Stores the savedScores array in local storage as a JSON string
   localStorage.setItem("savedScores", JSON.stringify(savedScores));
+  //Calls the showHighScores function to display the high scores on the high scores page
+  showHighScores();
 };
 
 //Assigns the saveScore function I created above to submitButton. When the "Submit" button is clicked, the saveScore function is called
 submitButton.onclick = saveScore;
-
 
 //This function limits the user to entering a max of 3 letters in the initials field
 function limitCharacters(){
@@ -189,32 +215,10 @@ initials.addEventListener("input", limitCharacters);
 submitButton.addEventListener("click", function() {
   highScores.style.display = "block";
   endScreen.style.display = "none";
+  showHighScores();
 });
-
-//Creates a function that will display the 10 previous high scores and initials on the high scores page
-
-function showHighScores(){
-  //Same as above, first retrieve the scores from the local storage and parse the JSON string to an object. If no scores have been saved, returns an empty array
-  var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
-  //Sorts the savedScores array in descending order by score
-  savedScores.sort(function(a, b) {
-    return b. score - a. score;
-});
-
-  //Clears the highScoresList element's innerHTML
-  highScoresList.innerHTML = "";
-  //for loop that loops through the savedScores array and creates a new li element for each score and initials
-  for (var i = 0; i < savedScores.length && i < 10; i++) {
-    var goodScore = document.createElement("li");
-    goodScore.textContent = savedScores[i].initials + " - " + savedScores[i].score;
-  }
-};
 
 showHighScores();
-
-
-
-
 
 
 //create a function that will display the user's initials and score on the high scores page if they have one of the top 5 scores
