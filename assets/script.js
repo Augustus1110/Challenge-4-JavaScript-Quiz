@@ -152,22 +152,26 @@ function saveScore(){
   var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
   var newScore = {
     score: score,
-    initials: initials.value.trim()
+    initials: initials.value
   }
   savedScores.push(newScore);
   localStorage.setItem("savedScores", JSON.stringify(savedScores));
 };
 
+//Assigns the saveScore function I created above to submitButton. When the "Submit" button is clicked, the saveScore function is called
 submitButton.onclick = saveScore;
 
-//This function limits the user to entering a max of 3 letters in the Enter initials field
+//This function limits the user to entering a max of 3 letters in the initials field
 function limitCharacters(){
+  //Removes any characters that are not lower or uppercase letters from the initials field
   initials.value = initials.value.replace(/[^a-zA-Z]/g, '');
+  //This if statement checks if the user has entered more than 3 characters
   if (initials.value.length > 3){
+    //If the answer is yes, this limits the initials field to a substring of the first 3 characters
     initials.value = initials.value.substring(0, 3);
   }
 };
-
+//Event listener that calls the limitCharacters function when the user types in the initials field
 initials.addEventListener("input", limitCharacters);
 
 
