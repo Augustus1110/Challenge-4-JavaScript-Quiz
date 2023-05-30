@@ -35,7 +35,7 @@ function showEndScreen() {
   endScreen.style.display = "block";
   //Displays final score as 0 if timer reaches 0, will not display negative number
   finalScore.textContent = Math.max(0, timeRemaining);
-}
+};
 
 //This function starts the timer. It works by using the variable timeRemaining, with value of 50, then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
 function startTimer() {
@@ -52,7 +52,7 @@ function startTimer() {
       showEndScreen();
    }
  }, 1000);
-}
+};
 
 //This function takes in the array of "choices" from questions.js as an argument and creates a button for each choice in that array
 function makeAnswerButtons(choices){
@@ -69,7 +69,7 @@ function makeAnswerButtons(choices){
     //Appends the choiceButton element as a child of the options div. This adds the button to the HTML page so that the user can see it
     options.appendChild(choiceButton);
   }
-}    
+};    
 
 //THIS PART OF THE CODE HANDLES THE START SCREEN AND START BUTTON
 
@@ -141,13 +141,12 @@ startButton.addEventListener("click", function() {
           }
         }
       }
-    );
+    )
   });
 
+//THIS PART OF THE CODE HANDLES THE END SCREEN WHERE THE USER CAN SUBMIT THEIR INITIALS, VIEW THEIR FINAL SCORE AND TRANSITION TO THE HIGH SCORES SCREEN 
 
-
-//THIS PART OF THE CODE HANDLES THE END SCREEN AND DISPLAYING THE USER'S FINAL SCORE 
-
+//This function creates the user's score and displays it on the end screen
 function saveScore(){
   var score = Math.max(0, timeRemaining);
   var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
@@ -157,9 +156,19 @@ function saveScore(){
   }
   savedScores.push(newScore);
   localStorage.setItem("savedScores", JSON.stringify(savedScores));
-}
+};
 
 submitButton.onclick = saveScore;
+
+//This function limits the user to entering a max of 3 letters in the Enter initials field
+function limitCharacters(){
+  initials.value = initials.value.replace(/[^a-zA-Z]/g, '');
+  if (initials.value.length > 3){
+    initials.value = initials.value.substring(0, 3);
+  }
+};
+
+initials.addEventListener("input", limitCharacters);
 
 
 
