@@ -17,8 +17,8 @@ var clearHighScores = document.getElementById("clear_high_scores");
 
 //These additional variables were created as I wrote the javascript, because they are needed to run the code
 
-//I need timeRemaining to be a global variable so that I can access it in multiple functions
-var timeRemaining = 50;
+//Creates timeRemaining variable as global variable so that I can access it in multiple functions
+var timeRemaining;
 //Creates variable that stores the current question index. Value is set to 0 because first question in the array is at index 0
 var currentQuestionIndex = 0;
 //Creates a variable that stores the questions array from questions.js
@@ -61,11 +61,13 @@ startButton.addEventListener("click", function() {
               result.textContent = "Incorrect!";
               //Subtracts 10 seconds from timeRemaining if user's answer is incorrect
               timeRemaining -= 10;
+              //If the timer becomes less than or equal to zero, clears interval, hides seconds, hides questions, and displays end screen with final score
               if (timeRemaining <= 0){
                 clearInterval(intervalId);
+                timeSec.style.display = "none";
                 quizQuestions.style.display = "none";
                 endScreen.style.display = "block";
-                finalScore.textContent = timeRemaining;
+                finalScore.textContent = Math.max(0, timeRemaining);
               }
           }
           //Appends result to quizQuestions div
@@ -91,18 +93,20 @@ startButton.addEventListener("click", function() {
               //Calls makeAnswerButtons function to display answer buttons for the next question
               makeAnswerButtons(choices);
           } else {
+              //If there are no more questions, clears interval, hides seconds, hides questions, and displays end screen with final score
               clearInterval(intervalId);
+              timeSec.style.display = "none";
               quizQuestions.style.display = "none";
               endScreen.style.display = "block";
-              finalScore.textContent = timeRemaining;
+              finalScore.textContent = Math.max(0, timeRemaining);
           }
       }
   });
 
     //THIS PART OF THE CODE HANDLES THE TIMER - BUT NOTE THAT IT IS STILL CONTAINED WITHIN THE START BUTTON EVENT LISTENER, SO THE TIMER FUNCTIONALITY STARTS WHEN THE START BUTTON IS CLICKED
 
-    //Starts timer by creating a variable with value of 60 and then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
-    //var timeRemaining = 50;
+    //Starts timer by using the variable timeRemaining, with value of 50, then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
+    timeRemaining = 50;
     var intervalId = setInterval(function() {
     //Decreases value of timeRemaining by 1 
     timeRemaining--;
@@ -110,20 +114,19 @@ startButton.addEventListener("click", function() {
     //If timeRemaining is negative, will display 0 instead of negative number
     timeSec.innerHTML = Math.max(0, timeRemaining);
  
-    // If the timer reaches zero, OR if all of the questions are answered, the following will happen: timer ends, questions become hidden and end screen will display
-
-    //Checks if timeRemaining is equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
+    //Checks if timeRemaining is less than or equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
     if (timeRemaining <= 0 || currentQuestionIndex === questions.length) {
-       //If either of the above is true, this stops timer, hides quiz questions and displays endScreen
+       //If the timer becomes less than or equal to zero, OR if there are no more questions, clears interval, hides seconds, hides questions, and displays end screen with final score
         clearInterval(intervalId);
+        timeSec.style.display = "none";
         quizQuestions.style.display = "none";
         endScreen.style.display = "block";
-        finalScore.textContent = timeRemaining;
+        finalScore.textContent = Math.max(0, timeRemaining);
     }
   }, 1000);
 });
 
-//The makeAnswerButtons function was created because the functionalities are repeated in my code above
+//I created the makeAnswerButtons function so I can call it instead of retyping the same code various times
 
 //This function takes in the array of "choices" from questions.js as an argument and creates a button for each choice in that array
 function makeAnswerButtons(choices){
@@ -142,6 +145,8 @@ function makeAnswerButtons(choices){
   }
 }    
 
+//THIS PART OF THE CODE HANDLES THE END SCREEN AND DISPLAYING THE USER'S FINAL SCORE 
+
 function saveScore(){
   var scopeScore = timeRemaining;
   var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
@@ -155,9 +160,9 @@ function saveScore(){
 
 submitButton.onclick = saveScore;
 
-//THIS PART OF THE CODE HANDLES THE END SCREEN AND SAVING THE USER'S SCORE
 
-//create a function that will save the user's initials and score to local storage
+
+
 
 //THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
 
