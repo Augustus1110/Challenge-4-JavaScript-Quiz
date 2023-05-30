@@ -144,7 +144,7 @@ function initializeQuiz() {
     )
   };
   
-  startButton.addEventListener("click", initializeQuiz);
+startButton.addEventListener("click", initializeQuiz);
 
 
 //THIS PART OF THE CODE HANDLES THE FUNCTIONALITIES OF BOTH THE END SCREEN AND THE HIGH SCORE SCREEN
@@ -224,8 +224,8 @@ clearScores.addEventListener("click", function() {
 function goBackButton(){
   startScreen.style.display = "block";
   highScores.style.display = "none";
+
 };
-
+goBackButton();
 goBack.addEventListener("click", goBackButton);
-
-
+window.addEventListener("load", initializeQuiz);
