@@ -12,7 +12,7 @@ var initials = document.getElementById("initials");
 var submitButton = document.getElementById("submit_button");
 var highScores = document.getElementById("high_scores");
 var highScoresList = document.getElementById("high_scores_list");
-var playAgain = document.getElementById("play_again");
+var goBack = document.getElementById("go_back");
 var clearScores = document.getElementById("clear_scores");
 
 //These additional variables were created as I wrote the javascript, because they are needed to run the code. They are global variables so that they can be accessed in multiple functions
@@ -146,7 +146,7 @@ startButton.addEventListener("click", function() {
 
 //THIS PART OF THE CODE HANDLES THE FUNCTIONALITIES OF BOTH THE END SCREEN AND THE HIGH SCORE SCREEN
 
-//Creates a function that will display the 10 previous high scores and initials on the high scores page
+//Creates a function that will display the 5 previous high scores and initials on the high scores page
 
 function showHighScores(){
   //Same as above, first retrieve the scores from the local storage and parse the JSON string to an object. If no scores have been saved, returns an empty array
@@ -158,7 +158,7 @@ function showHighScores(){
   //Clears the highScoresList element's innerHTML
   highScoresList.innerHTML = "";
   //for loop that loops through the savedScores array and creates a new li element for each score and initials
-  for (var i = 0; i < savedScores.length && i < 10.; i++) {
+  for (var i = 0; i < savedScores.length && i < 5.; i++) {
     var scoreItem = document.createElement("li");
     scoreItem.textContent = savedScores[i].initials + ": " + savedScores[i].score;
     highScoresList.appendChild(scoreItem);
@@ -211,7 +211,9 @@ submitButton.addEventListener("click", function() {
   showHighScores();
 });
 
+//This function that will clear the high scores list when the user click the Clear Scores button
+clearScores.addEventListener("click", function() {
+  localStorage.clear();
+  highScoresList.innerHTML = "";
+});
 
-//create a function that will go back to the start screen
-
-//create a function that will clear the high scores
