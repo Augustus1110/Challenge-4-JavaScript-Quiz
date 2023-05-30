@@ -24,6 +24,15 @@ var currentQuestionIndex = 0;
 //Creates a variable that stores the questions array from questions.js
 var choices = questions[currentQuestionIndex].choices;
 
+function showEndScreen (){
+  clearInterval(intervalId);
+  timeSec.style.display = "none";
+  quizQuestions.style.display = "none";
+  endScreen.style.display = "block";
+  //Displays final score as 0 if timer reaches 0, will not display negative number
+  finalScore.textContent = Math.max(0, timeRemaining);
+};
+
 
 //THIS PART OF THE CODE HANDLES THE START SCREEN AND START BUTTON
 
@@ -67,6 +76,7 @@ startButton.addEventListener("click", function() {
                 timeSec.style.display = "none";
                 quizQuestions.style.display = "none";
                 endScreen.style.display = "block";
+                //Displays final score as 0 if timer reaches 0, will not display negative number
                 finalScore.textContent = Math.max(0, timeRemaining);
               }
           }
@@ -98,6 +108,7 @@ startButton.addEventListener("click", function() {
               timeSec.style.display = "none";
               quizQuestions.style.display = "none";
               endScreen.style.display = "block";
+              //Displays final score as 0 if timer reaches 0, will not display negative number
               finalScore.textContent = Math.max(0, timeRemaining);
           }
       }
@@ -121,6 +132,7 @@ startButton.addEventListener("click", function() {
         timeSec.style.display = "none";
         quizQuestions.style.display = "none";
         endScreen.style.display = "block";
+        //Displays final score as 0 if timer reaches 0, will not display negative number
         finalScore.textContent = Math.max(0, timeRemaining);
     }
   }, 1000);
@@ -159,9 +171,6 @@ function saveScore(){
 }
 
 submitButton.onclick = saveScore;
-
-
-
 
 
 //THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
