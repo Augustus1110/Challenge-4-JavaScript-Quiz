@@ -16,6 +16,7 @@ var playAgain = document.getElementById("play_again");
 var clearHighScores = document.getElementById("clear_high_scores");
 
 //These additional variables were created as I wrote the javascript, because they are needed to run the code. They are global variables so that they can be accessed in multiple functions
+
 var intervalId;
 var timeRemaining;
 //Creates variable that stores the current question index. Value is set to 0 because first question in the array is at index 0
@@ -25,6 +26,8 @@ var choices = questions[currentQuestionIndex].choices;
 
 //I created all of these functions so I don't have to repeat code. I can just call these functions when I need them. I created them at the top of the file so they are accessible to all of the code below
 
+
+//showEndScreen function clears the interval, hides seconds, hides questions, and displays end screen with final score
 function showEndScreen() {
   clearInterval(intervalId);
   timeSec.style.display = "none";
@@ -34,9 +37,9 @@ function showEndScreen() {
   finalScore.textContent = Math.max(0, timeRemaining);
 }
 
+//This function starts the timer. It works by using the variable timeRemaining, with value of 50, then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
 function startTimer() {
-   //Starts timer by using the variable timeRemaining, with value of 60, then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
-   timeRemaining = 60;
+   timeRemaining = 50;
    intervalId = setInterval(function() {
    //Decreases value of timeRemaining by 1 
    timeRemaining--;
@@ -50,6 +53,23 @@ function startTimer() {
    }
  }, 1000);
 }
+
+//This function takes in the array of "choices" from questions.js as an argument and creates a button for each choice in that array
+function makeAnswerButtons(choices){
+  //Creates a loop that will loop through the choices array
+  for (var i = 0; i < choices.length; i++) {
+    //Creates button element for each choice in array
+    var choiceButton = document.createElement("button");
+    //.setAttribute is a method used to modify/add attributes to an HTML element. Here, it sets the class of each button to "choice" so that it can be targeted later. I will target it to add CSS styling
+    choiceButton.setAttribute("class", "choice");
+    //Sets value of each button to value of each choice in array
+    choiceButton.setAttribute("value", choices[i]);
+    //Sets text of each button to value of each choice in array
+    choiceButton.textContent = choices[i];
+    //Appends the choiceButton element as a child of the options div. This adds the button to the HTML page so that the user can see it
+    options.appendChild(choiceButton);
+  }
+}    
 
 //THIS PART OF THE CODE HANDLES THE START SCREEN AND START BUTTON
 
@@ -125,30 +145,14 @@ startButton.addEventListener("click", function() {
   });
 
 
-//This function takes in the array of "choices" from questions.js as an argument and creates a button for each choice in that array
-function makeAnswerButtons(choices){
-  //Creates a loop that will loop through the choices array
-  for (var i = 0; i < choices.length; i++) {
-    //Creates button element for each choice in array
-    var choiceButton = document.createElement("button");
-    //.setAttribute is a method used to modify/add attributes to an HTML element. Here, it sets the class of each button to "choice" so that it can be targeted later. I will target it to add CSS styling
-    choiceButton.setAttribute("class", "choice");
-    //Sets value of each button to value of each choice in array
-    choiceButton.setAttribute("value", choices[i]);
-    //Sets text of each button to value of each choice in array
-    choiceButton.textContent = choices[i];
-    //Appends the choiceButton element as a child of the options div. This adds the button to the HTML page so that the user can see it
-    options.appendChild(choiceButton);
-  }
-}    
 
 //THIS PART OF THE CODE HANDLES THE END SCREEN AND DISPLAYING THE USER'S FINAL SCORE 
 
 function saveScore(){
-  var scopeScore = timeRemaining;
+  var score = Math.max(0, timeRemaining);
   var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
   var newScore = {
-    score: scopeScore,
+    score: score,
     initials: initials.value.trim()
   }
   savedScores.push(newScore);
