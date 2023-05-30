@@ -144,7 +144,7 @@ startButton.addEventListener("click", function() {
   });
 
 
-//THIS PART OF THE CODE HANDLES THE FUNCTIONALITIES OF BOTH THE END SCREEN AND THE HIGH SCORE SCREENS
+//THIS PART OF THE CODE HANDLES THE FUNCTIONALITIES OF BOTH THE END SCREEN AND THE HIGH SCORE SCREEN
 
 //Creates a function that will display the 10 previous high scores and initials on the high scores page
 
@@ -184,8 +184,6 @@ function saveScore(){
 });
   //Stores the savedScores array in local storage as a JSON string
   localStorage.setItem("savedScores", JSON.stringify(savedScores));
-  //Calls the showHighScores function to display the high scores on the high scores page
-  showHighScores();
 };
 
 //Assigns the saveScore function I created above to submitButton. When the "Submit" button is clicked, the saveScore function is called
@@ -206,11 +204,6 @@ function limitCharacters(){
 initials.addEventListener("input", limitCharacters);
 
 
-//****MAYBE THIS NEXT FEATURE HAS TO GO IN THIS SECTION?? ADD THE USER'S CURRENT SCORE TO THE HIGH SCORES PAGE IF THEY HAVE ONE OF THE TOP 10 SCORES****//
-
-
-//THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
-
 //This function will display the high scores screen and hide the end screen when the user clicks the submit button on the end screen
 submitButton.addEventListener("click", function() {
   highScores.style.display = "block";
@@ -218,9 +211,7 @@ submitButton.addEventListener("click", function() {
   showHighScores();
 });
 
-showHighScores();
 
-
-//create a function that will display the user's initials and score on the high scores page if they have one of the top 5 scores
-//create a function that will clear the high scores
 //create a function that will go back to the start screen
+
+//create a function that will clear the high scores
