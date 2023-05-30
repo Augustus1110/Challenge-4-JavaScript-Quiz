@@ -164,6 +164,7 @@ function saveScore(){
 //Assigns the saveScore function I created above to submitButton. When the "Submit" button is clicked, the saveScore function is called
 submitButton.onclick = saveScore;
 
+
 //This function limits the user to entering a max of 3 letters in the initials field
 function limitCharacters(){
   //Removes any characters that are not lower or uppercase letters from the initials field
@@ -174,12 +175,15 @@ function limitCharacters(){
     initials.value = initials.value.substring(0, 3);
   }
 };
+
 //Event listener that calls the limitCharacters function when the user types in the initials field
 initials.addEventListener("input", limitCharacters);
 
-//THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
 
-//write a function that will display the high scores page when the user clicks the submit button on the end screen
+//****MAYBE THIS NEXT FEATURE HAS TO GO IN THIS SECTION?? ADD THE USER'S CURRENT SCORE TO THE HIGH SCORES PAGE IF THEY HAVE ONE OF THE TOP 10 SCORES****//
+
+
+//THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
 
 //This function will display the high scores screen and hide the end screen when the user clicks the submit button on the end screen
 submitButton.addEventListener("click", function() {
@@ -187,9 +191,32 @@ submitButton.addEventListener("click", function() {
   endScreen.style.display = "none";
 });
 
+//Creates a function that will display the 10 previous high scores and initials on the high scores page
+
+function showHighScores(){
+  //Same as above, first retrieve the scores from the local storage and parse the JSON string to an object. If no scores have been saved, returns an empty array
+  var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
+  //Sorts the savedScores array in descending order by score
+  savedScores.sort(function(a, b) {
+    return b. score - a. score;
+});
+
+  //Clears the highScoresList element's innerHTML
+  highScoresList.innerHTML = "";
+  //for loop that loops through the savedScores array and creates a new li element for each score and initials
+  for (var i = 0; i < savedScores.length && i < 10; i++) {
+    var goodScore = document.createElement("li");
+    goodScore.textContent = savedScores[i].initials + " - " + savedScores[i].score;
+  }
+};
+
+showHighScores();
 
 
-//create a function that will display the 5-10 previous high scores and initials on the high scores page
+
+
+
+
 //create a function that will display the user's initials and score on the high scores page if they have one of the top 5 scores
 //create a function that will clear the high scores
 //create a function that will go back to the start screen
