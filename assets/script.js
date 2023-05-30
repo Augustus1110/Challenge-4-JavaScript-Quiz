@@ -143,7 +143,7 @@ function initializeQuiz() {
       }
     )
   };
-
+  
   startButton.addEventListener("click", initializeQuiz);
 
 
@@ -222,8 +222,10 @@ clearScores.addEventListener("click", function() {
 
 //This function will display the start screen and hide the high scores screen when the user clicks the Go Back button on the high scores screen
 function goBackButton(){
-  initializeQuiz();
+  startScreen.style.display = "block";
+  highScores.style.display = "none";
 };
 
 goBack.addEventListener("click", goBackButton);
-window.addEventListener("load", initializeQuiz);
+
+
