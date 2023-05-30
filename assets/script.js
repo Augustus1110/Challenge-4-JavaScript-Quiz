@@ -33,7 +33,7 @@ function showEndScreen() {
   timeSec.style.display = "none";
   quizQuestions.style.display = "none";
   endScreen.style.display = "block";
-  //Displays final score as 0 if timer reaches 0, will not display negative number
+  //Math.max is a method that returns the largest of the two numbers. Here, it returns the largest of 0 and timeRemaining and displays it as the final score. It will display 0 if timeRemaining is negative
   finalScore.textContent = Math.max(0, timeRemaining);
 };
 
@@ -148,13 +148,17 @@ startButton.addEventListener("click", function() {
 
 //This function creates the user's score and displays it on the end screen
 function saveScore(){
+  //Score will be the time remaining on the timer or 0, whichever is greater
   var score = Math.max(0, timeRemaining);
+  //Retrieves savedScores from local storage and parses the JSON string to an object. If no scores have been saved, returns an empty array
   var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
+  //Creates a variable that is a new object that store the user's score and initials
   var newScore = {
     score: score,
     initials: initials.value
-  }
+  } //Pushes the newScore object to the savedScores array
   savedScores.push(newScore);
+  //Sorts the savedScores array in descending order by score
   localStorage.setItem("savedScores", JSON.stringify(savedScores));
 };
 
@@ -173,7 +177,6 @@ function limitCharacters(){
 };
 //Event listener that calls the limitCharacters function when the user types in the initials field
 initials.addEventListener("input", limitCharacters);
-
 
 
 //THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
