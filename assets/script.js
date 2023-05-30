@@ -15,24 +15,41 @@ var highScoresList = document.getElementById("high_scores_list");
 var playAgain = document.getElementById("play_again");
 var clearHighScores = document.getElementById("clear_high_scores");
 
-//These additional variables were created as I wrote the javascript, because they are needed to run the code
-
-//Creates timeRemaining variable as global variable so that I can access it in multiple functions
+//These additional variables were created as I wrote the javascript, because they are needed to run the code. They are global variables so that they can be accessed in multiple functions
+var intervalId;
 var timeRemaining;
 //Creates variable that stores the current question index. Value is set to 0 because first question in the array is at index 0
 var currentQuestionIndex = 0;
 //Creates a variable that stores the questions array from questions.js
 var choices = questions[currentQuestionIndex].choices;
 
-function showEndScreen (){
+//I created all of these functions so I don't have to repeat code. I can just call these functions when I need them. I created them at the top of the file so they are accessible to all of the code below
+
+function showEndScreen() {
   clearInterval(intervalId);
   timeSec.style.display = "none";
   quizQuestions.style.display = "none";
   endScreen.style.display = "block";
   //Displays final score as 0 if timer reaches 0, will not display negative number
   finalScore.textContent = Math.max(0, timeRemaining);
-};
+}
 
+function startTimer() {
+   //Starts timer by using the variable timeRemaining, with value of 60, then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
+   timeRemaining = 60;
+   intervalId = setInterval(function() {
+   //Decreases value of timeRemaining by 1 
+   timeRemaining--;
+   //Updates text of timer to display the new value of timeRemaining
+   //If timeRemaining is negative, will display 0 instead of negative number
+   timeSec.innerHTML = Math.max(0, timeRemaining);
+   //Checks if timeRemaining is less than or equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
+   if (timeRemaining <= 0 || currentQuestionIndex === questions.length) {
+      //If the timer becomes less than or equal to zero, OR if there are no more questions, clears interval, hides seconds, hides questions, and displays end screen with final score
+      showEndScreen();
+   }
+ }, 1000);
+}
 
 //THIS PART OF THE CODE HANDLES THE START SCREEN AND START BUTTON
 
@@ -40,6 +57,7 @@ function showEndScreen (){
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none";
     quizQuestions.style.display = "block";
+    startTimer();
 
     //THIS PART OF THE CODE HANDLES DISPLAYING THE QUESTIONS AND CHOICES
 
@@ -70,14 +88,9 @@ startButton.addEventListener("click", function() {
               result.textContent = "Incorrect!";
               //Subtracts 10 seconds from timeRemaining if user's answer is incorrect
               timeRemaining -= 10;
-              //If the timer becomes less than or equal to zero, clears interval, hides seconds, hides questions, and displays end screen with final score
+              //If the timer becomes less than or equal to zero, showEndScreen function is called and clears the interval, hides seconds, hides questions, and displays end screen with final score
               if (timeRemaining <= 0){
-                clearInterval(intervalId);
-                timeSec.style.display = "none";
-                quizQuestions.style.display = "none";
-                endScreen.style.display = "block";
-                //Displays final score as 0 if timer reaches 0, will not display negative number
-                finalScore.textContent = Math.max(0, timeRemaining);
+                  showEndScreen();
               }
           }
           //Appends result to quizQuestions div
@@ -103,42 +116,14 @@ startButton.addEventListener("click", function() {
               //Calls makeAnswerButtons function to display answer buttons for the next question
               makeAnswerButtons(choices);
           } else {
-              //If there are no more questions, clears interval, hides seconds, hides questions, and displays end screen with final score
-              clearInterval(intervalId);
-              timeSec.style.display = "none";
-              quizQuestions.style.display = "none";
-              endScreen.style.display = "block";
-              //Displays final score as 0 if timer reaches 0, will not display negative number
-              finalScore.textContent = Math.max(0, timeRemaining);
+              //If there are no more questions, showEndScreen function is called and clears the interval, hides seconds, hides questions, and displays end screen with final score
+              showEndScreen();
           }
+        }
       }
+    );
   });
 
-    //THIS PART OF THE CODE HANDLES THE TIMER - BUT NOTE THAT IT IS STILL CONTAINED WITHIN THE START BUTTON EVENT LISTENER, SO THE TIMER FUNCTIONALITY STARTS WHEN THE START BUTTON IS CLICKED
-
-    //Starts timer by using the variable timeRemaining, with value of 50, then using setInterval method to create a function that will be called every 1000ms (i.e. every 1 second)
-    timeRemaining = 50;
-    var intervalId = setInterval(function() {
-    //Decreases value of timeRemaining by 1 
-    timeRemaining--;
-    //Updates text of timer to display the new value of timeRemaining
-    //If timeRemaining is negative, will display 0 instead of negative number
-    timeSec.innerHTML = Math.max(0, timeRemaining);
- 
-    //Checks if timeRemaining is less than or equal to 0 OR if currentQuestionIndex is equal to the length of the questions array
-    if (timeRemaining <= 0 || currentQuestionIndex === questions.length) {
-       //If the timer becomes less than or equal to zero, OR if there are no more questions, clears interval, hides seconds, hides questions, and displays end screen with final score
-        clearInterval(intervalId);
-        timeSec.style.display = "none";
-        quizQuestions.style.display = "none";
-        endScreen.style.display = "block";
-        //Displays final score as 0 if timer reaches 0, will not display negative number
-        finalScore.textContent = Math.max(0, timeRemaining);
-    }
-  }, 1000);
-});
-
-//I created the makeAnswerButtons function so I can call it instead of retyping the same code various times
 
 //This function takes in the array of "choices" from questions.js as an argument and creates a button for each choice in that array
 function makeAnswerButtons(choices){
@@ -171,6 +156,7 @@ function saveScore(){
 }
 
 submitButton.onclick = saveScore;
+
 
 
 //THIS PART OF THE CODE HANDLES THE HIGH SCORES SCREEN
