@@ -26,6 +26,7 @@ var choices = questions[currentQuestionIndex].choices;
 
 //I created all of these functions so I don't have to repeat code. I can just call these functions when I need them. I created them at the top of the file so they are accessible to all of the code below
 
+
 //showEndScreen function clears the interval, hides seconds, hides questions, and displays end screen with final score
 function showEndScreen() {
   clearInterval(intervalId);
@@ -217,3 +218,13 @@ clearScores.addEventListener("click", function() {
   highScoresList.innerHTML = "";
 });
 
+//This function will display the start screen and hide the high scores screen when the user clicks the Go Back button on the high scores screen
+function goBackButton(){
+  highScores.style.display = "none";
+  //Hides the end screen
+  endScreen.style.display = "none";
+  //Shows the start screen
+  startScreen.style.display = "block";
+};
+
+goBack.addEventListener("click", goBackButton);
