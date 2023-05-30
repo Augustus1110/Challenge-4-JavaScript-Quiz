@@ -73,8 +73,8 @@ function makeAnswerButtons(choices){
 
 //THIS PART OF THE CODE HANDLES THE START SCREEN AND START BUTTON
 
-//Adds a click event listener to Start Quiz button. When clicked, startButton function is going to hide the Start Screen, display the quiz questions and start the timer
-startButton.addEventListener("click", function() {
+//This is the function that starts the quiz. It is called when the start button is clicked. The click of the start button is going to hide the Start Screen, display the quiz questions and start the timer
+function initializeQuiz() {
     startScreen.style.display = "none";
     quizQuestions.style.display = "block";
     startTimer();
@@ -142,7 +142,9 @@ startButton.addEventListener("click", function() {
         }
       }
     )
-  });
+  };
+
+  startButton.addEventListener("click", initializeQuiz);
 
 
 //THIS PART OF THE CODE HANDLES THE FUNCTIONALITIES OF BOTH THE END SCREEN AND THE HIGH SCORE SCREEN
@@ -220,11 +222,8 @@ clearScores.addEventListener("click", function() {
 
 //This function will display the start screen and hide the high scores screen when the user clicks the Go Back button on the high scores screen
 function goBackButton(){
-  highScores.style.display = "none";
-  //Hides the end screen
-  endScreen.style.display = "none";
-  //Shows the start screen
-  startScreen.style.display = "block";
+  initializeQuiz();
 };
 
 goBack.addEventListener("click", goBackButton);
+window.addEventListener("load", initializeQuiz);
