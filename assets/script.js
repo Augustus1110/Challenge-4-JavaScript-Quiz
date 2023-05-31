@@ -90,61 +90,61 @@ function initializeQuiz() {
     title.innerHTML = questions[0].question;
     //In order to display the answer choices as buttons, I created the makeAnswerButtons function and amd calling it here, passing in the choices array as an argument. The text of the function is found at the bottom of this file
     makeAnswerButtons(choices);
+};
     
-    //THIS PART OF THE CODE HANDLES THE USER'S ANSWERS TO THE QUESTIONS
+//THIS PART OF THE CODE HANDLES THE USER'S ANSWERS TO THE QUESTIONS
 
-    //Adds a click event listener to the options div.
-    options.addEventListener("click", function(event) {
-      //When choice button clicked, this checks if clicked element matches the class "choice"
-      if (event.target.matches(".choice")) {
-          //If true, clicked button's value is stored in userAnswer variable
-          var userAnswer = event.target.value;
-          //Retrieves correct answer for current question from questions array
-          var correctAnswer = questions[currentQuestionIndex].answer;
-          //Creates new paragraph element called result, to display correctness of user's answer
-          var result = document.createElement("p");
-          //Checks if user's answer matches correct answer, displays "Correct!" or "Incorrect!", accordingly
-          if (userAnswer === correctAnswer) {
-              result.textContent = "Correct!";
-          } else {
-              result.textContent = "Incorrect!";
-              //Subtracts 10 seconds from timeRemaining if user's answer is incorrect
-              timeRemaining -= 10;
-              //If the timer becomes less than or equal to zero, showEndScreen function is called and clears the interval, hides seconds, hides questions, and displays end screen with final score
-              if (timeRemaining <= 0){
-                  showEndScreen();
-              }
-          }
-          //Appends result to quizQuestions div
-          quizQuestions.appendChild(result);
-          //Displays result for 0.8 seconds, then uses setTimeout method to hide result on page by removing result from quizQuestions
-          setTimeout(function() {
-              result.remove();
-          }, 800);
-
-          //THIS PART OF THE CODE HANDLES MOVING ON TO THE NEXT QUESTION
-
-          //After user answers question, this increases currentQuestionIndex by 1 which moves the index to the next question in the array
-          currentQuestionIndex++;
-
-          //Checks if currentQuestionIndex is less than the length of the questions array, if true, displays next question
-          if (currentQuestionIndex < questions.length) {
-              //If there are more questions, updates title element's innerHTML to the question of the next index in the questions array  
-              title.innerHTML = questions[currentQuestionIndex].question;
-              //Updates choices variable to the choices of the next index in the questions array
-              choices = questions[currentQuestionIndex].choices;
-              //sets options' innerHTML to an empty string to remove any previously displayed answer buttons
-              options.innerHTML = "";
-              //Calls makeAnswerButtons function to display answer buttons for the next question
-              makeAnswerButtons(choices);
-          } else {
-              //If there are no more questions, showEndScreen function is called and clears the interval, hides seconds, hides questions, and displays end screen with final score
+//Adds a click event listener to the options div.
+options.addEventListener("click", function(event) {
+  //When choice button clicked, this checks if clicked element matches the class "choice"
+  if (event.target.matches(".choice")) {
+      //If true, clicked button's value is stored in userAnswer variable
+      var userAnswer = event.target.value;
+      //Retrieves correct answer for current question from questions array
+      var correctAnswer = questions[currentQuestionIndex].answer;
+      //Creates new paragraph element called result, to display correctness of user's answer
+      var result = document.createElement("p");
+      //Checks if user's answer matches correct answer, displays "Correct!" or "Incorrect!", accordingly
+      if (userAnswer === correctAnswer) {
+          result.textContent = "Correct!";
+      } else {
+          result.textContent = "Incorrect!";
+          //Subtracts 10 seconds from timeRemaining if user's answer is incorrect
+          timeRemaining -= 10;
+          //If the timer becomes less than or equal to zero, showEndScreen function is called and clears the interval, hides seconds, hides questions, and displays end screen with final score
+          if (timeRemaining <= 0){
               showEndScreen();
           }
-        }
       }
-    )
-  };
+      //Appends result to quizQuestions div
+      quizQuestions.appendChild(result);
+      //Displays result for 0.8 seconds, then uses setTimeout method to hide result on page by removing result from quizQuestions
+      setTimeout(function() {
+          result.remove();
+      }, 800);
+
+      //THIS PART OF THE CODE HANDLES MOVING ON TO THE NEXT QUESTION
+
+      //After user answers question, this increases currentQuestionIndex by 1 which moves the index to the next question in the array
+      currentQuestionIndex++;
+
+      //Checks if currentQuestionIndex is less than the length of the questions array, if true, displays next question
+      if (currentQuestionIndex < questions.length) {
+          //If there are more questions, updates title element's innerHTML to the question of the next index in the questions array  
+          title.innerHTML = questions[currentQuestionIndex].question;
+          //Updates choices variable to the choices of the next index in the questions array
+          choices = questions[currentQuestionIndex].choices;
+          //sets options' innerHTML to an empty string to remove any previously displayed answer buttons
+          options.innerHTML = "";
+          //Calls makeAnswerButtons function to display answer buttons for the next question
+          makeAnswerButtons(choices);
+      } else {
+          //If there are no more questions, showEndScreen function is called and clears the interval, hides seconds, hides questions, and displays end screen with final score
+          showEndScreen();
+      }
+    }
+  }
+);
   
 startButton.addEventListener("click", initializeQuiz);
 
@@ -208,6 +208,15 @@ function limitCharacters(){
 //Event listener that calls the limitCharacters function when the user types in the initials field
 initials.addEventListener("input", limitCharacters);
 
+//This function will display the start screen and hide the high scores screen when the user clicks the Go Back button on the high scores screen
+function goBackButton(){
+  startScreen.style.display = "block";
+  highScores.style.display = "none";
+  currentQuestionIndex = 0;
+
+};
+goBackButton();
+goBack.addEventListener("click", goBackButton);
 
 //This function will display the high scores screen and hide the end screen when the user clicks the submit button on the end screen
 submitButton.addEventListener("click", function() {
@@ -222,12 +231,3 @@ clearScores.addEventListener("click", function() {
   highScoresList.innerHTML = "";
 });
 
-//This function will display the start screen and hide the high scores screen when the user clicks the Go Back button on the high scores screen
-function goBackButton(){
-  startScreen.style.display = "block";
-  highScores.style.display = "none";
-  currentQuestionIndex = 0;
-
-};
-goBackButton();
-goBack.addEventListener("click", goBackButton);
