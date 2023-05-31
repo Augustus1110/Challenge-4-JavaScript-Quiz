@@ -56,6 +56,7 @@ function startTimer() {
 
 //This function takes in the array of "choices" from questions.js as an argument and creates a button for each choice in that array
 function makeAnswerButtons(choices){
+  options.innerHTML = "";
   //Creates a loop that will loop through the choices array
   for (var i = 0; i < choices.length; i++) {
     //Creates button element for each choice in array
@@ -77,6 +78,7 @@ function makeAnswerButtons(choices){
 function initializeQuiz() {
     startScreen.style.display = "none";
     quizQuestions.style.display = "block";
+    timeSec.style.display = "inline-block";
     startTimer();
 
     //THIS PART OF THE CODE HANDLES DISPLAYING THE QUESTIONS AND CHOICES
@@ -224,8 +226,8 @@ clearScores.addEventListener("click", function() {
 function goBackButton(){
   startScreen.style.display = "block";
   highScores.style.display = "none";
+  currentQuestionIndex = 0;
 
 };
 goBackButton();
 goBack.addEventListener("click", goBackButton);
-window.addEventListener("load", initializeQuiz);
