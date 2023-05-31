@@ -217,7 +217,7 @@ function goBackButton(){
   timeSec.style.display = "inline";
   choices = questions[0].choices;
 };
-
+//Calls the goBackButton function and then runs it on the click of the "Go Back" button
 goBackButton();
 goBack.addEventListener("click", goBackButton);
 
@@ -230,7 +230,7 @@ submitButton.addEventListener("click", function() {
   showHighScores();
 });
 
-//This function that will clear the high scores list when the user click the Clear Scores button
+//This function that will clear the high scores list when the user click the "Clear Scores" button
 clearScores.addEventListener("click", function() {
   localStorage.clear();
   highScoresList.innerHTML = "";
