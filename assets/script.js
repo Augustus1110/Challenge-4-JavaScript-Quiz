@@ -226,9 +226,6 @@ submitButton.addEventListener("click", function() {
   endScreen.style.display = "none";
   timeRemaining = 50;
   initials.value = "";
-  //write some code that displays time sec on the start screen after the user clicks submit
-
-
   showHighScores();
 });
 

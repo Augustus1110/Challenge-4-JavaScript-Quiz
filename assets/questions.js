@@ -4,13 +4,13 @@ let questions = [
     { 
         Number: 1,
         question: "Commonly used data types do NOT include _____ .", 
-        answer: "alerts", 
-        choices: ["strings", "booleans", "alerts", "numbers"]
+        answer: "puppies", 
+        choices: ["strings", "booleans", "puppies", "numbers"]
     },
     { Number: 2,
         question: "The condition in an if / else statement is enclosed within _____ .", 
         answer: "parentheses",
-        choices: ["quotes", "curly brackets", "parentheses", "square brackets"]
+        choices: ["quotes", "curly brackets", "parentheses", "love"]
     },
     { Number: 3,
         question: "In JavaScript, Arrays can be used to store _____ .",
@@ -20,11 +20,11 @@ let questions = [
     { Number: 4,
         question: "String values must be enclosed within ____ when being assigned to variables?",
         answer: "quotes",
-        choices: ["quotes", "curly brackets", "parentheses","commas"]
+        choices: ["quotes", "beans", "parentheses","commas"]
     },
     { Number: 5,
         question: "A very useful tool used during development and debugging for printing content to the debugger is _____ .",
         answer: "console.log",
-        choices: ["JavaScript", "terminal/ bash", "console.log", "for loops"]
+        choices: ["Bug spray", "terminal/ bash", "console.log", "for loops"]
     },
 ]
