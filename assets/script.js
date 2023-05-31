@@ -213,8 +213,10 @@ function goBackButton(){
   startScreen.style.display = "block";
   highScores.style.display = "none";
   currentQuestionIndex = 0;
-
+  timeSec.textContent = 50;
+  timeSec.style.display = "inline";
 };
+
 goBackButton();
 goBack.addEventListener("click", goBackButton);
 
@@ -222,6 +224,11 @@ goBack.addEventListener("click", goBackButton);
 submitButton.addEventListener("click", function() {
   highScores.style.display = "block";
   endScreen.style.display = "none";
+  timeRemaining = 50;
+  initials.value = "";
+  //write some code that displays time sec on the start screen after the user clicks submit
+
+
   showHighScores();
 });
 
