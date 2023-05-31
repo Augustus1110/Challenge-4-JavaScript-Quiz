@@ -208,7 +208,7 @@ function limitCharacters(){
 //Event listener that calls the limitCharacters function when the user types in the initials field
 initials.addEventListener("input", limitCharacters);
 
-//This function will display the start screen and hide the high scores screen when the user clicks the Go Back button on the high scores screen
+//This function will display the start screen and hide the high scores screen when the user clicks the Go Back button on the high scores screen. It also resets the currentQuestionIndex to 0, and displays the seconds on the timer again, beginning at 50 seconds. It also resets the choices variable to the choices of the first index in the questions array. 
 function goBackButton(){
   startScreen.style.display = "block";
   highScores.style.display = "none";
@@ -221,7 +221,7 @@ function goBackButton(){
 goBackButton();
 goBack.addEventListener("click", goBackButton);
 
-//This function will display the high scores screen and hide the end screen when the user clicks the submit button on the end screen
+//This function will display the high scores screen and hide the end screen when the user clicks the submit button on the end screen as well as reset the timer to 50 seconds and clear the initials field so it can be reused by the next user
 submitButton.addEventListener("click", function() {
   highScores.style.display = "block";
   endScreen.style.display = "none";
