@@ -25,6 +25,6 @@ let questions = [
     { Number: 5,
         question: "A very useful tool used during development and debugging for printing content to the debugger is _____ .",
         answer: "console.log",
-        choices: ["Bug spray", "terminal/ bash", "console.log", "for loops"]
+        choices: ["terminal/ bash", "Bug Spray", "console.log", "for loops"]
     },
 ]

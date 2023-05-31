@@ -215,6 +215,7 @@ function goBackButton(){
   currentQuestionIndex = 0;
   timeSec.textContent = 50;
   timeSec.style.display = "inline";
+  choices = questions[0].choices;
 };
 
 goBackButton();
