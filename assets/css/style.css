@@ -6,6 +6,10 @@
   font-family: 'Calistoga', cursive;
 }
 
+/*body{
+  background-image: linear-gradient(rgb(249, 169, 204), rgba(0, 128, 0, 0.48), rgba(44, 88, 176, 0.70));
+}*/
+
 .start {
   display: flex;
   flex-direction: column;
@@ -20,7 +24,8 @@
   width: 150px; /* Sets the width of the buttons */
   height: 40px; /* Sets the height of the buttons */
   font-size: 18px; /* Sets the font size inside buttons */
-  background-color: rgba(202, 134, 216, 0.912);
+  color: white;
+  background-color: rgba(7, 76, 113, 0.912);
 }
 
 #start_screen p {
@@ -82,3 +87,38 @@
   margin-top: 10px;
   margin-left: 10px;
 }
+
+#end_screen {
+  display: none;
+  text-align: center; /* Center align the text */
+}
+
+#end_screen h1,
+#end_screen h2,
+#end_screen p {
+  margin-bottom: 20px; /* Adds margin to create spacing between the elements */
+}
+
+#end_screen input[type="text"],
+#end_screen button {
+  margin-bottom: 10px; /* Adds margin to create spacing between the elements */
+}
+
+#end_screen input[type="text"] {
+  width: 200px; /* Sets the width of the input field */
+  height: 30px; /* Sets the height of the input field */
+  font-size: 16px; /* Sets the font size of the input field */
+}
+
+#end_screen button {
+  width: 100px; /* Sets the width of the button */
+  height: 30px; /* Sets the height of the button */
+  font-size: 16px; /* Sets the font size of the button */
+  background-color: rgba(7, 76, 113, 0.912);
+  color: white;
+}
+
+
+
+
+
