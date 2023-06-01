@@ -6,9 +6,9 @@
   font-family: 'Calistoga', cursive;
 }
 
-/*body{
-  background-image: linear-gradient(rgb(249, 169, 204), rgba(0, 128, 0, 0.48), rgba(44, 88, 176, 0.70));
-}*/
+body{
+  background-image: radial-gradient(rgba(222, 243, 128, 0.86),  rgba(231, 201, 241, 0.891), rgb(137, 212, 241));
+}
 
 .start {
   display: flex;
@@ -79,7 +79,7 @@
   width: 200px; /* Sets the width of the buttons */
   height: 40px; /* Sets the height of the buttons */
   font-size: 18px; /* Sets the font size inside buttons */
-  background-color: rgba(83, 207, 205, 0.948);
+  background-color: rgba(64, 210, 207, 0.74);
 }
 
 .timer {
@@ -94,22 +94,26 @@
 }
 
 #end_screen h1 {
+  color: rgba(7, 76, 113, 0.912);
   margin-top: 25px;
   margin-bottom: 15px; /* Adds margin to create spacing between the elements */
+  font-size: 41px;
 }
 #end_screen h2 {
   margin-bottom: 15px; /* Adds margin to create spacing between the elements */
-  font-size: 21px;
+  font-size: 20px;
+  font-style: italic;
 }
 
 #end_screen p {
   margin-bottom: 10px; /* Adds margin to create spacing between the elements */
-  font-size: 23px;
+  font-size: 20px;
 }
 
 #end_screen input[type="text"] {
   width: 200px; /* Sets the width of the input field */
   height: 30px; /* Sets the height of the input field */
+  font-size: 17px; /* Sets the font size of the input field */
 }
 
 #end_screen button {
