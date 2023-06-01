@@ -15,9 +15,22 @@
   text-align: center;
 }
 
-#start-button {
-  margin-top: 20px;
-  padding-top: 20px;
+#start_button {
+  margin: 10px 0; /* Margin for spacing between each button */
+  width: 150px; /* Sets the width of the buttons */
+  height: 40px; /* Sets the height of the buttons */
+  font-size: 18px; /* Sets the font size inside buttons */
+  background-color: rgba(202, 134, 216, 0.912);
+}
+
+#start_screen p {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+#start_screen h1 {
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 #end_screen {
@@ -35,7 +48,7 @@
   align-items: center;
   font-size: 20px;
   text-align: center;
-  padding-top: 0px; /* Adds padding at the top of the question container */
+  padding-top: 20px; /* Adds padding at the top of the question container */
 }
 
 #title {
@@ -61,7 +74,7 @@
   width: 200px; /* Sets the width of the buttons */
   height: 40px; /* Sets the height of the buttons */
   font-size: 18px; /* Sets the font size inside buttons */
-  background-color: rgba(34, 175, 197, 0.912);
+  background-color: rgba(83, 207, 205, 0.948);
 }
 
 .timer {

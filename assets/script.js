@@ -24,6 +24,7 @@ var timeRemaining;
 var currentQuestionIndex = 0;
 //Creates a variable that stores the questions array from questions.js
 var choices = questions[currentQuestionIndex].choices;
+var timer = document.querySelector("timer");
 
 //I created all of these functions so I don't have to repeat code. I can just call these functions when I need them. I created them at the top of the file so they are accessible to all of the code below
 
