@@ -1,5 +1,6 @@
 //I created variables matching the html code and assigned them the value of the element with their ID 
 
+var container = document.getElementById("container");
 var timeSec = document.getElementById("time_sec");
 var startScreen = document.getElementById("start_screen");
 var startButton = document.getElementById("start_button");

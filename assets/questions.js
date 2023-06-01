@@ -3,17 +3,17 @@
 let questions = [
     { 
         Number: 1,
-        question: "Commonly used data types do NOT include _____ .", 
+        question: "Commonly used data types do NOT include __________ .", 
         answer: "puppies", 
         choices: ["strings", "booleans", "puppies", "numbers"]
     },
     { Number: 2,
-        question: "The condition in an if / else statement is enclosed within _____ .", 
+        question: "The condition in an if / else statement is enclosed within __________ .", 
         answer: "parentheses",
         choices: ["quotes", "curly brackets", "parentheses", "love"]
     },
     { Number: 3,
-        question: "In JavaScript, Arrays can be used to store _____ .",
+        question: "In JavaScript, Arrays can be used to store __________ .",
         answer: "all of the above",
         choices: ["numbers and strings", "other arrays", "booleans", "all of the above"]
     },
@@ -23,7 +23,7 @@ let questions = [
         choices: ["quotes", "beans", "parentheses","commas"]
     },
     { Number: 5,
-        question: "A very useful tool used during development and debugging for printing content to the debugger is _____ .",
+        question: "A very useful tool used during development and debugging for printing content to the debugger is __________ .",
         answer: "console.log",
         choices: ["terminal/ bash", "Bug Spray", "console.log", "for loops"]
     },
