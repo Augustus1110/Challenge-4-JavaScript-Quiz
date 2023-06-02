@@ -6,6 +6,11 @@
   font-family: 'Calistoga', cursive;
 }
 
+#end_screen, 
+#high_scores {
+  display: none;
+}
+
 body{
   *display: flex;
   flex-direction: column;
@@ -43,11 +48,6 @@ body{
 #start_screen h1 {
   margin-top: 30px;
   margin-bottom: 20px;
-}
-
-#end_screen, 
-#high_scores {
-  display: none;
 }
 
 

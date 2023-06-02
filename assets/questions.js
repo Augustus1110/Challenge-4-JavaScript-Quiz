@@ -18,7 +18,7 @@ let questions = [
         choices: ["numbers and strings", "other arrays", "booleans", "all of the above"]
     },
     { Number: 4,
-        question: "String values must be enclosed within ____ when being assigned to variables?",
+        question: "String values must be enclosed within __________ when being assigned to variables?",
         answer: "quotes",
         choices: ["quotes", "beans", "parentheses","commas"]
     },
