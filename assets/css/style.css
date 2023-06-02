@@ -55,7 +55,7 @@ body{
   align-items: center;
   font-size: 20px;
   text-align: center;
-  padding-top: 20px; /* Adds padding at the top of the question container */
+  padding-top: 150px; /* Adds padding at the top of the question container */
 }
 
 #title {
@@ -92,7 +92,8 @@ body{
 
 #end_screen {
   display: none;
-  text-align: center; /* Center align the text */
+  text-align: center; /* Center aligns the all the text */
+  margin-top: 165px;
 }
 
 #end_screen h1 {
