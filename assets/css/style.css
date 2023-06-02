@@ -17,6 +17,7 @@ body{
   justify-content: center;
   height: 100vh;
   text-align: center;
+  margin-top: 200px;
 }
 
 #start_button {
@@ -30,6 +31,7 @@ body{
 
 #start_screen p {
   font-size: 22px;
+  margin-top: 0px;
   margin-bottom: 20px;
 }
 
